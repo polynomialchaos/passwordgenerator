@@ -1,0 +1,13 @@
+{
+    "title": "Passwort Generator",
+    "segments": "Segmente",
+    "length": "Segmentlänge",
+    "letter": "Buchstaben",
+    "digit": "Zahlen",
+    "punctuation": "Sonderzeichen",
+    "additional": "Extra",
+    "forbidden": "Vermeide",
+    "password": "Passwort",
+    "generate": "Genrieren",
+    "reset": "Zurücksetzen"
+}

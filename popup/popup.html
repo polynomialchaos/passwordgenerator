@@ -1,0 +1,126 @@
+<!-- MIT License -->
+<!--  -->
+<!-- Copyright (c) 2021 Florian -->
+<!--  -->
+<!-- Permission is hereby granted, free of charge, to any person obtaining a copy -->
+<!-- of this software and associated documentation files (the "Software"), to deal -->
+<!-- in the Software without restriction, including without limitation the rights -->
+<!-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell -->
+<!-- copies of the Software, and to permit persons to whom the Software is -->
+<!-- furnished to do so, subject to the following conditions: -->
+<!--  -->
+<!-- The above copyright notice and this permission notice shall be included in all -->
+<!-- copies or substantial portions of the Software. -->
+<!--  -->
+<!-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR -->
+<!-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, -->
+<!-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE -->
+<!-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER -->
+<!-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, -->
+<!-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE -->
+<!-- SOFTWARE. -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Password generator</title>
+    <style>
+        * {
+            font-family: 'Courier New', Courier, monospace;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            float: left;
+            color: #222;
+            background: #fff;
+            margin: 1.5em;
+        }
+
+        body h1 {
+            font-size: 140%;
+        }
+
+        body table {
+            table-layout: fixed;
+            text-align: left;
+        }
+
+        body table {
+            border-spacing: 0em 0.5em;
+        }
+
+        body table td input:not([type='checkbox']) {
+            width: 21ch;
+        }
+
+        body button {
+            font-size: 140%;
+            padding-left: 0.5em;
+            padding-right: 0.5em;
+        }
+
+        #id_segments_value,
+        #id_length_value {
+            display: block;
+            width: 2ch;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: #eee;
+                background: #121212;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="id_title">Password generator</h1>
+    <table>
+        <tr>
+            <td><label for="id_segments" id="id_segments_label">Chunks</label></td>
+            <td><input type="range" min="1" max="10" id="id_segments">
+            <td><label id="id_segments_value"></label></td>
+        </tr>
+        <tr>
+            <td><label for="id_length" id="id_length_label">Chunk length</label></td>
+            <td><input type="range" min="1" max="20" id="id_length"></td>
+            <td><label id="id_length_value"></label></td>
+        </tr>
+
+        <tr>
+            <td><label for="id_letter" id="id_letter_label">Letters</label></td>
+            <td><input type="checkbox" id="id_letter"></td>
+        </tr>
+        <tr>
+            <td><label for="id_digit" id="id_digit_label">Digits</label></td>
+            <td><input type="checkbox" id="id_digit"></td>
+        </tr>
+        <tr>
+            <td><label for="id_punctuation" id="id_punctuation_label">Punctuations</label></td>
+            <td><input type="checkbox" id="id_punctuation"></td>
+        </tr>
+
+        <tr>
+            <td><label for="id_additional" id="id_additional_label">Extra</label></td>
+            <td><input id="id_additional"></td>
+        </tr>
+        <tr>
+            <td><label for="id_forbidden" id="id_forbidden_label">Nopes</label></td>
+            <td><input id="id_forbidden"></td>
+        </tr>
+
+        <tr>
+            <td><label for="id_password" id="id_password_label">Password</label></td>
+            <td><input id="id_password"></td>
+        </tr>
+    </table>
+
+    <button id="id_generate">Generate</button>
+    <button id="id_reset">Reset</button>
+    <script src="popup.js"></script>
+</body>
+
+</html>
