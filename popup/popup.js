@@ -56,38 +56,6 @@ function random_choices(a, length) {
     return result;
 }
 
-// Get the defined user language
-function get_user_language() {
-    var available = ["de", "en"];
-
-    var locale = [
-        ...(window.navigator.languages || []),
-        window.navigator.language,
-        window.navigator.browserLanguage,
-        window.navigator.userLanguage,
-        window.navigator.systemLanguage
-    ]
-        .filter(Boolean)
-        .map(language => language.substr(0, 2))
-        .find(language => available.includes(language)) || "en";
-
-    return locale
-}
-
-// Load a JSON File asynchronous
-function loadJSON(path, callback) {
-    var xobj = new XMLHttpRequest();
-
-    xobj.overrideMimeType("application/json");
-    xobj.open('GET', path, true);
-    xobj.onreadystatechange = function () {
-        if (xobj.readyState == 4 && xobj.status == "200") {
-            callback(xobj.responseText);
-        }
-    };
-    xobj.send(null);
-}
-
 // Initialize the password generator script
 function generate_password_init() {
     // get the ID's of the page
@@ -104,6 +72,30 @@ function generate_password_init() {
     const id_generate = document.getElementById('id_generate');
     const id_reset = document.getElementById('id_reset');
 
+    const id_title = document.getElementById('id_title');
+    const id_segments_label = document.getElementById('id_segments_label');
+    const id_length_label = document.getElementById('id_length_label');
+    const id_letter_label = document.getElementById('id_letter_label');
+    const id_digit_label = document.getElementById('id_digit_label');
+    const id_punctuation_label = document.getElementById('id_punctuation_label');
+    const id_additional_label = document.getElementById('id_additional_label');
+    const id_forbidden_label = document.getElementById('id_forbidden_label');
+    const id_password_label = document.getElementById('id_password_label');
+
+    // localization
+    id_title.innerHTML = chrome.i18n.getMessage('application_title');
+    id_segments_label.innerHTML = chrome.i18n.getMessage('segments');
+    id_length_label.innerHTML = chrome.i18n.getMessage('length');
+    id_letter_label.innerHTML = chrome.i18n.getMessage('letter');
+    id_digit_label.innerHTML = chrome.i18n.getMessage('digit');
+    id_punctuation_label.innerHTML = chrome.i18n.getMessage('punctuation');
+    id_additional_label.innerHTML = chrome.i18n.getMessage('additional');
+    id_forbidden_label.innerHTML = chrome.i18n.getMessage('forbidden');
+    id_password_label.innerHTML = chrome.i18n.getMessage('password');
+    id_generate.innerHTML = chrome.i18n.getMessage('generate');
+    id_reset.innerHTML = chrome.i18n.getMessage('reset');
+
+    // event listening
     id_segments.addEventListener('input', update_user_interface);
     id_length.addEventListener('input', update_user_interface);
 
@@ -129,31 +121,6 @@ function generate_password_init() {
         generate_password()
     });
 
-    loadJSON('/language/' + get_user_language() + '.json', function (response) {
-        const id_title = document.getElementById('id_title');
-        const id_segments_label = document.getElementById('id_segments_label');
-        const id_length_label = document.getElementById('id_length_label');
-        const id_letter_label = document.getElementById('id_letter_label');
-        const id_digit_label = document.getElementById('id_digit_label');
-        const id_punctuation_label = document.getElementById('id_punctuation_label');
-        const id_additional_label = document.getElementById('id_additional_label');
-        const id_forbidden_label = document.getElementById('id_forbidden_label');
-        const id_password_label = document.getElementById('id_password_label');
-
-        data = JSON.parse(response)
-        id_title.innerHTML = data['title'];
-        id_segments_label.innerHTML = data['segments'];
-        id_length_label.innerHTML = data['length'];
-        id_letter_label.innerHTML = data['letter'];
-        id_digit_label.innerHTML = data['digit'];
-        id_punctuation_label.innerHTML = data['punctuation'];
-        id_additional_label.innerHTML = data['additional'];
-        id_forbidden_label.innerHTML = data['forbidden'];
-        id_password_label.innerHTML = data['password'];
-        id_generate.innerHTML = data['generate'];
-        id_reset.innerHTML = data['reset'];
-    });
-
     // Load/default user interface values (base on user selections)
     chrome.storage.local.get(['id_segments', 'id_length', 'id_letter',
         'id_digit', 'id_punctuation', 'id_additional', 'id_forbidden'], function (result) {
@@ -174,11 +141,6 @@ function generate_password_init() {
     function update_user_interface() {
         id_segments_value.innerHTML = id_segments.value;
         id_length_value.innerHTML = id_length.value;
-
-        // val = String(id_segments.value * id_length.value + 1) + 'ch';
-        // id_additional.style.width = val;
-        // id_forbidden.style.width = val;
-        // id_password.style.width = val;
     }
 
     // Store user interface values

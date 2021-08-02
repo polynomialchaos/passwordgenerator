@@ -1,0 +1,38 @@
+{
+    "application_title": {
+        "message": "Passwort Generator"
+    },
+    "application_description": {
+        "message":  "Eine einfache Erweiterung zum Generieren sicherer Passwörter."
+    },
+    "segments": {
+        "message": "Segmente"
+    },
+    "length": {
+        "message": "Segmentlänge"
+    },
+    "letter": {
+        "message": "Buchstaben"
+    },
+    "digit": {
+        "message": "Zahlen"
+    },
+    "punctuation": {
+        "message": "Sonderzeichen"
+    },
+    "additional": {
+        "message": "Extra"
+    },
+    "forbidden": {
+        "message": "Vermeide"
+    },
+    "password": {
+        "message": "Passwort"
+    },
+    "generate": {
+        "message": "Genrieren"
+    },
+    "reset": {
+        "message": "Zurücksetzen"
+    }
+}

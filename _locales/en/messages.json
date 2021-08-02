@@ -1,0 +1,38 @@
+{
+    "application_title": {
+        "message": "Passwortd generator"
+    },
+    "application_description": {
+        "message":  "An edge extension to generate secure passwords."
+    },
+    "segments": {
+        "message": "Chunks"
+    },
+    "length": {
+        "message": "Chunk length"
+    },
+    "letter": {
+        "message": "Letters"
+    },
+    "digit": {
+        "message": "Digits"
+    },
+    "punctuation": {
+        "message": "Punctuations"
+    },
+    "additional": {
+        "message": "Extra"
+    },
+    "forbidden": {
+        "message": "Nopes"
+    },
+    "password": {
+        "message": "Password"
+    },
+    "generate": {
+        "message": "Generate"
+    },
+    "reset": {
+        "message": "Reset"
+    }
+}
