@@ -1,0 +1,1 @@
+zip -r passwordgenerator.zip manifest.json popup icons _locales
