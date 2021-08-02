@@ -3,7 +3,7 @@
         "message": "Passwortd generator"
     },
     "application_description": {
-        "message":  "An edge extension to generate secure passwords."
+        "message":  "An extension to generate secure passwords."
     },
     "segments": {
         "message": "Chunks"

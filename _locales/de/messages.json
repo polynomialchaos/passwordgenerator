@@ -3,7 +3,7 @@
         "message": "Passwort Generator"
     },
     "application_description": {
-        "message":  "Eine einfache Erweiterung zum Generieren sicherer Passwörter."
+        "message":  "Eine Erweiterung zum Generieren sicherer Passwörter."
     },
     "segments": {
         "message": "Segmente"
