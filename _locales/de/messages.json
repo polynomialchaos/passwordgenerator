@@ -20,6 +20,9 @@
     "punctuation": {
         "message": "Sonderzeichen"
     },
+    "autocopy": {
+        "message": "Zwischenablage"
+    },
     "additional": {
         "message": "Extra"
     },

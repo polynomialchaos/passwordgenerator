@@ -20,6 +20,9 @@
     "punctuation": {
         "message": "Punctuations"
     },
+    "autocopy": {
+        "message": "Clipboard"
+    },
     "additional": {
         "message": "Extra"
     },

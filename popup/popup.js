@@ -26,6 +26,7 @@ const def_length = 6;
 const def_letter = true;
 const def_digit = true;
 const def_punctuation = false;
+const def_autocopy = true;
 const def_additional = '!§$%&?';
 const def_forbidden = '°^\\';
 
@@ -66,9 +67,11 @@ function generate_password_init() {
     const id_letter = document.getElementById('id_letter');
     const id_digit = document.getElementById('id_digit');
     const id_punctuation = document.getElementById('id_punctuation');
+    const id_autocopy = document.getElementById('id_autocopy');
     const id_additional = document.getElementById('id_additional');
     const id_forbidden = document.getElementById('id_forbidden');
     const id_password = document.getElementById('id_password');
+    const id_password_copy = document.getElementById('id_password_copy');
     const id_generate = document.getElementById('id_generate');
     const id_reset = document.getElementById('id_reset');
 
@@ -78,6 +81,7 @@ function generate_password_init() {
     const id_letter_label = document.getElementById('id_letter_label');
     const id_digit_label = document.getElementById('id_digit_label');
     const id_punctuation_label = document.getElementById('id_punctuation_label');
+    const id_autocopy_label = document.getElementById('id_autocopy_label');
     const id_additional_label = document.getElementById('id_additional_label');
     const id_forbidden_label = document.getElementById('id_forbidden_label');
     const id_password_label = document.getElementById('id_password_label');
@@ -89,6 +93,7 @@ function generate_password_init() {
     id_letter_label.innerHTML = chrome.i18n.getMessage('letter');
     id_digit_label.innerHTML = chrome.i18n.getMessage('digit');
     id_punctuation_label.innerHTML = chrome.i18n.getMessage('punctuation');
+    id_autocopy_label.innerHTML = chrome.i18n.getMessage('autocopy');
     id_additional_label.innerHTML = chrome.i18n.getMessage('additional');
     id_forbidden_label.innerHTML = chrome.i18n.getMessage('forbidden');
     id_password_label.innerHTML = chrome.i18n.getMessage('password');
@@ -104,8 +109,13 @@ function generate_password_init() {
     id_letter.addEventListener('change', generate_password);
     id_digit.addEventListener('change', generate_password);
     id_punctuation.addEventListener('change', generate_password);
+    id_autocopy.addEventListener('change', generate_password);
     id_additional.addEventListener('change', generate_password);
     id_forbidden.addEventListener('change', generate_password);
+
+    id_password_copy.addEventListener('click', function (result) {
+        navigator.clipboard.writeText(id_password.value);
+    });
 
     id_generate.addEventListener('click', generate_password);
     id_reset.addEventListener('click', function (result) {
@@ -114,6 +124,7 @@ function generate_password_init() {
         id_letter.checked = def_letter;
         id_digit.checked = def_digit;
         id_punctuation.checked = def_punctuation;
+        id_autocopy.checked = def_autocopy;
         id_additional.value = def_additional;
         id_forbidden.value = def_forbidden;
 
@@ -129,6 +140,7 @@ function generate_password_init() {
             id_letter.checked = (result.id_letter != null) ? result.id_letter : def_letter;
             id_digit.checked = (result.id_digit != null) ? result.id_digit : def_digit;
             id_punctuation.checked = (result.id_punctuation != null) ? result.id_punctuation : def_punctuation;
+            id_autocopy.checked = (result.id_autocopy != null) ? result.id_autocopy : def_autocopy;
             id_additional.value = (result.id_additional != null) ? result.id_additional : def_additional;
             id_forbidden.value = (result.id_forbidden != null) ? result.id_forbidden : def_forbidden;
 
@@ -152,6 +164,7 @@ function generate_password_init() {
             'id_letter': id_letter.checked,
             'id_digit': id_digit.checked,
             'id_punctuation': id_punctuation.checked,
+            'id_autocopy': id_autocopy.checked,
             'id_additional': id_additional.value,
             'id_forbidden': id_forbidden.value
         });
@@ -188,6 +201,10 @@ function generate_password_init() {
         // set the password in field
         password_string = password.join(delimiter);
         id_password.value = password_string;
+
+        if (id_autocopy.checked) {
+            navigator.clipboard.writeText(id_password.value);
+        }
 
         store_user_interface();
     }
