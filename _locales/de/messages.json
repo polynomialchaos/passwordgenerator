@@ -11,8 +11,11 @@
     "length": {
         "message": "Segmentlänge"
     },
-    "letter": {
-        "message": "Buchstaben"
+    "lower_letter": {
+        "message": "Kleinbuchstaben"
+    },
+    "upper_letter": {
+        "message": "Großbuchstaben"
     },
     "digit": {
         "message": "Zahlen"

@@ -11,8 +11,11 @@
     "length": {
         "message": "Chunk length"
     },
-    "letter": {
-        "message": "Letters"
+    "lower_letter": {
+        "message": "Lowercase letters"
+    },
+    "upper_letter": {
+        "message": "Uppercase letters"
     },
     "digit": {
         "message": "Digits"
