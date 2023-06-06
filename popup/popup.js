@@ -142,7 +142,7 @@ function generate_password_init() {
 
     // Load/default user interface values (base on user selections)
     chrome.storage.local.get(['id_segments', 'id_segments_value', 'id_length', 'id_length_value', 
-        'id_lower_letter', 'id_upper_letter', 'id_digit', 'id_punctuation', 
+        'id_lower_letter', 'id_upper_letter', 'id_digit', 'id_punctuation', 'id_autocopy', 
         'id_additional', 'id_forbidden'], function (result) {
             id_segments.value = (result.id_segments != null) ? result.id_segments : def_segments;
             id_segments_value.value = (result.id_segments_value != null) ? result.id_segments_value : def_segments;
@@ -224,7 +224,7 @@ function generate_password_init() {
         id_password.value = password_string;
 
         if (id_autocopy.checked) {
-            navigator.clipboard.writeText(id_password.value);
+            setTimeout(() => navigator.clipboard.writeText(id_password.value), 500);
         }
 
         store_user_interface();
