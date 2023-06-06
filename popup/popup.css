@@ -1,0 +1,113 @@
+:root {
+    --color-background: rgb(255, 255, 255);
+    --color-text: rgb(24, 24, 24);
+    --color-element-light: rgba(0, 0, 0, 0.1);
+    --color-element: rgba(0, 0, 0, 0.2);
+    --color-element-hover: rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: rgb(84, 84, 84);
+        --color-text: rgb(248, 248, 248);
+        --color-element-light: rgba(255, 255, 255, 0.1);
+        --color-element: rgba(255, 255, 255, 0.3);
+        --color-element-hover: rgba(255, 255, 255, 0.2);
+    }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+
+  font-size: 12px;
+}
+
+html {
+  font-family: inherit;
+  line-height: inherit;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-background);
+
+  width: max-content;
+  height: auto;
+}
+
+button,
+input {
+  height: 22px;
+}
+
+button {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  color: inherit;
+  background-color: var(--color-element);
+}
+
+button:hover {
+    background-color: var(--color-element-hover);
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  color: inherit;
+  background-color: var(--color-element-light);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  height: 35px;
+  vertical-align: middle;
+}
+
+tr:last-child td {
+    height: 45px;
+}
+
+tr input[type="checkbox"] {
+  float: right;
+}
+
+tr td:first-child {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+tr td:last-child {
+  padding-right: 10px;
+}
+
+.separator {
+  height: 1px;
+  border-bottom: 1px solid var(--color-element-light)
+}
+
+.dual-cell {
+  width: calc(100% - 10px);
+  display: inline-flex;
+  align-items: center;
+}
+
+.dual-cell div:first-child {
+  flex-grow: 1;
+  padding-right: 4px;
+}

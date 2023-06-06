@@ -77,7 +77,6 @@ function generate_password_init() {
     const id_generate = document.getElementById('id_generate');
     const id_reset = document.getElementById('id_reset');
 
-    const id_title = document.getElementById('id_title');
     const id_segments_label = document.getElementById('id_segments_label');
     const id_length_label = document.getElementById('id_length_label');
     const id_lower_letter_label = document.getElementById('id_lower_letter_label');
@@ -90,7 +89,6 @@ function generate_password_init() {
     const id_password_label = document.getElementById('id_password_label');
 
     // localization
-    id_title.innerHTML = chrome.i18n.getMessage('application_title');
     id_segments_label.innerHTML = chrome.i18n.getMessage('segments');
     id_length_label.innerHTML = chrome.i18n.getMessage('length');
     id_lower_letter_label.innerHTML = chrome.i18n.getMessage('lower_letter');
@@ -106,10 +104,14 @@ function generate_password_init() {
 
     // event listening
     id_segments.addEventListener('input', update_user_interface);
+    id_segments_value.addEventListener('input', () => update_user_interface(false));
     id_length.addEventListener('input', update_user_interface);
+    id_length_value.addEventListener('input', () => update_user_interface(false));
 
     id_segments.addEventListener('change', generate_password);
+    id_segments_value.addEventListener('change', generate_password);
     id_length.addEventListener('change', generate_password);
+    id_length_value.addEventListener('change', generate_password);
     id_lower_letter.addEventListener('change', generate_password);
     id_upper_letter.addEventListener('change', generate_password);
     id_digit.addEventListener('change', generate_password);
@@ -139,10 +141,13 @@ function generate_password_init() {
     });
 
     // Load/default user interface values (base on user selections)
-    chrome.storage.local.get(['id_segments', 'id_length', 'id_lower_letter', 'id_upper_letter',
-        'id_digit', 'id_punctuation', 'id_additional', 'id_forbidden'], function (result) {
+    chrome.storage.local.get(['id_segments', 'id_segments_value', 'id_length', 'id_length_value', 
+        'id_lower_letter', 'id_upper_letter', 'id_digit', 'id_punctuation', 
+        'id_additional', 'id_forbidden'], function (result) {
             id_segments.value = (result.id_segments != null) ? result.id_segments : def_segments;
+            id_segments_value.value = (result.id_segments_value != null) ? result.id_segments_value : def_segments;
             id_length.value = (result.id_length != null) ? result.id_length : def_length;
+            id_length_value.value = (result.id_length_value != null) ? result.id_length_value : def_length;
             id_lower_letter.checked = (result.id_lower_letter != null) ? result.id_lower_letter : def_lower_letter;
             id_upper_letter.checked = (result.id_upper_letter != null) ? result.id_upper_letter : def_upper_letter;
             id_digit.checked = (result.id_digit != null) ? result.id_digit : def_digit;
@@ -157,9 +162,14 @@ function generate_password_init() {
     )
 
     // Update user interface values (based on user selections)
-    function update_user_interface() {
-        id_segments_value.innerHTML = id_segments.value;
-        id_length_value.innerHTML = id_length.value;
+    function update_user_interface(assignInputFromSlider = true) {
+      if (assignInputFromSlider) {
+        id_segments_value.value = id_segments.value;
+        id_length_value.value = id_length.value;
+      } else {
+        id_segments.value = id_segments_value.value;
+        id_length.value = id_length_value.value; 
+      }
     }
 
     // Store user interface values
@@ -167,7 +177,9 @@ function generate_password_init() {
         // store the values
         chrome.storage.local.set({
             'id_segments': id_segments.value,
+            'id_segments_value':id_segments_value.value,
             'id_length': id_length.value,
+            'id_length_value': id_length_value.value,
             'id_lower_letter': id_lower_letter.checked,
             'id_upper_letter': id_upper_letter.checked,
             'id_digit': id_digit.checked,
@@ -202,8 +214,8 @@ function generate_password_init() {
 
         // build the password based on the user input
         password = [];
-        for (let i = 0; i < id_segments.value; i++) {
-            choices = random_choices(valid_chars, id_length.value).join('');
+        for (let i = 0; i < id_segments_value.value; i++) {
+            choices = random_choices(valid_chars, id_length_value.value).join('');
             password.push(choices);
         }
 
